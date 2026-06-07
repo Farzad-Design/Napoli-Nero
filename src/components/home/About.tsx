@@ -62,7 +62,7 @@ export default function About() {
               style={{ boxShadow: '0 20px 80px rgba(0,0,0,0.6), 0 0 0 1px var(--border)' }}
             >
               <Image
-                src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&q=80"
+                src="/images/restaurant.png"
                 alt="Napoli Nero restaurant interior"
                 fill sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover"
