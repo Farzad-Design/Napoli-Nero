@@ -1,0 +1,174 @@
+'use client';
+
+import { useRef } from 'react';
+import Image from 'next/image';
+import { motion } from 'framer-motion';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+import { testimonials, type Testimonial } from '@/data/testimonials';
+
+gsap.registerPlugin(ScrollTrigger);
+
+/* ── Star rating ─────────────────────────────────────── */
+function Stars({ count }: { count: number }) {
+  return (
+    <div className="flex gap-0.5">
+      {Array.from({ length: count }).map((_, i) => (
+        <svg key={i} className="w-3.5 h-3.5 text-ember-500 fill-current" viewBox="0 0 20 20">
+          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+      ))}
+    </div>
+  );
+}
+
+/* ── Testimonial card ────────────────────────────────── */
+function TestimonialCard({ t }: { t: Testimonial }) {
+  return (
+    <motion.div
+      whileHover={{ y: -6, scale: 1.02 }}
+      transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
+      className="group flex-shrink-0 w-[310px] rounded-2xl p-5 cursor-default"
+      style={{
+        background:       'rgba(20, 20, 28, 0.80)',
+        backdropFilter:   'blur(20px)',
+        WebkitBackdropFilter: 'blur(20px)',
+        border:           '1px solid rgba(255,255,255,0.07)',
+        boxShadow:        '0 4px 32px rgba(0,0,0,0.5)',
+        transition:       'box-shadow 0.35s ease',
+      }}
+      onHoverStart={() => {}}
+    >
+      {/* Top: avatar + name */}
+      <div className="flex items-center gap-3 mb-4">
+        <div className="relative w-11 h-11 rounded-full overflow-hidden border-2 border-ember-500/25 flex-shrink-0">
+          <Image
+            src={t.image}
+            alt={t.name}
+            fill
+            sizes="44px"
+            className="object-cover"
+          />
+        </div>
+        <div>
+          <div className="text-white font-semibold text-sm leading-tight">{t.name}</div>
+          <div className="text-[var(--text-muted)] text-[0.62rem] tracking-wide mt-0.5">
+            {t.role} · {t.location}
+          </div>
+        </div>
+        {/* Quote icon */}
+        <div className="ml-auto opacity-25 group-hover:opacity-50 transition-opacity">
+          <svg className="w-7 h-7 text-ember-500 fill-current" viewBox="0 0 24 24">
+            <path d="M11.192 15.757c0-.88-.23-1.618-.69-2.217-.326-.412-.768-.683-1.327-.812-.55-.128-1.07-.137-1.54-.028-.16-.95.1-1.95.78-3 .53-.81 1.24-1.48 2.13-2.01l-1.23-1.39c-1.17.75-2.1 1.7-2.79 2.85-.7 1.15-1.07 2.36-1.11 3.64.04 1.34.43 2.46 1.17 3.35.74.88 1.72 1.33 2.96 1.33.68 0 1.28-.2 1.8-.6.52-.4.88-.93 1.07-1.58.12-.43.18-.87.19-1.31zM19.752 15.757c0-.88-.23-1.618-.69-2.217-.326-.42-.77-.692-1.327-.812-.55-.132-1.07-.14-1.54-.03-.17-.95.1-1.95.78-3 .53-.81 1.24-1.48 2.13-2.01l-1.23-1.39c-1.17.75-2.1 1.7-2.79 2.85-.7 1.15-1.06 2.36-1.11 3.64.04 1.34.44 2.46 1.18 3.35.74.88 1.73 1.33 2.96 1.33.68 0 1.28-.2 1.8-.6.52-.4.87-.93 1.06-1.58.13-.43.19-.87.19-1.31z" />
+          </svg>
+        </div>
+      </div>
+
+      {/* Stars */}
+      <Stars count={t.rating} />
+
+      {/* Review text */}
+      <p className="text-[var(--text-secondary)] text-[0.82rem] leading-relaxed mt-3 line-clamp-4">
+        "{t.text}"
+      </p>
+
+      {/* Glow on hover */}
+      <div
+        className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+        style={{ boxShadow: '0 0 0 1px rgba(255,107,0,0.20), 0 8px 40px rgba(255,107,0,0.10)' }}
+      />
+    </motion.div>
+  );
+}
+
+/* ── Section ─────────────────────────────────────────── */
+export default function Testimonials() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const headerRef  = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    gsap.fromTo(
+      headerRef.current,
+      { y: 40, opacity: 0 },
+      {
+        y: 0, opacity: 1, duration: 0.8,
+        scrollTrigger: {
+          trigger:  headerRef.current,
+          start:    'top 80%',
+          toggleActions: 'play none none reverse',
+        },
+      },
+    );
+  }, { scope: sectionRef });
+
+  /* Duplicate for seamless marquee */
+  const doubled = [...testimonials, ...testimonials];
+
+  return (
+    <section
+      ref={sectionRef}
+      id="reviews"
+      className="relative py-28 overflow-hidden bg-[var(--bg-secondary)]"
+    >
+      {/* Ambient glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[300px] rounded-full bg-ember-500/[0.04] blur-[100px] pointer-events-none" />
+
+      {/* Section header */}
+      <div ref={headerRef} className="container-site mb-14 text-center">
+        <div className="flex items-center justify-center gap-3 mb-4">
+          <div className="w-8 h-[1.5px] bg-ember-500" />
+          <span className="text-ember-400 text-[0.7rem] font-medium tracking-[0.25em] uppercase font-body">
+            Guest Stories
+          </span>
+          <div className="w-8 h-[1.5px] bg-ember-500" />
+        </div>
+        <h2 className="heading-section text-white mb-4">Our Happy Customers</h2>
+        <p className="text-[var(--text-secondary)] text-sm max-w-xl mx-auto leading-relaxed">
+          Real stories from happy guests who enjoyed authentic Italian flavors
+          and a luxury dining experience at Napoli Nero.
+        </p>
+      </div>
+
+      {/* Scrolling marquee */}
+      <div className="relative overflow-hidden">
+        {/* Left mask */}
+        <div
+          className="absolute left-0 top-0 bottom-0 w-32 z-10 pointer-events-none"
+          style={{ background: 'linear-gradient(90deg, var(--bg-secondary) 0%, transparent 100%)' }}
+        />
+        {/* Right mask */}
+        <div
+          className="absolute right-0 top-0 bottom-0 w-32 z-10 pointer-events-none"
+          style={{ background: 'linear-gradient(270deg, var(--bg-secondary) 0%, transparent 100%)' }}
+        />
+
+        <div className="testimonials-track overflow-hidden">
+          <div className="testimonials-wrap">
+            {doubled.map((t, i) => (
+              <TestimonialCard key={`${t.id}-${i}`} t={t} />
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* CTA */}
+      <div className="container-site mt-14 flex justify-center gap-3">
+        <motion.button
+          whileHover={{ scale: 1.04, y: -2 }}
+          whileTap={{ scale: 0.97 }}
+          className="btn btn-outline"
+        >
+          Read All Reviews
+        </motion.button>
+        <motion.button
+          whileHover={{ scale: 1.04, y: -2, boxShadow: '0 0 28px rgba(255,107,0,0.4)' }}
+          whileTap={{ scale: 0.97 }}
+          className="btn btn-primary"
+        >
+          Book Your Table
+        </motion.button>
+      </div>
+    </section>
+  );
+}

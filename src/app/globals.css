@@ -1,0 +1,170 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── CSS Variables ─────────────────────────────────── */
+:root {
+  --bg-primary:   #080808;
+  --bg-secondary: #0f0f0f;
+  --bg-card:      #141414;
+  --text-primary:   #ffffff;
+  --text-secondary: #a0a0a0;
+  --text-muted:     #585858;
+  --border:         rgba(255, 255, 255, 0.08);
+  --shadow-card:    0 4px 24px rgba(0, 0, 0, 0.45);
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body:    'Montserrat', system-ui, sans-serif;
+}
+
+/* ── Base ──────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: rgba(224, 123, 58, 0.35);
+  color: white;
+}
+
+::-webkit-scrollbar         { width: 5px; }
+::-webkit-scrollbar-track   { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb   { background: #E07B3A; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #C4621F; }
+
+/* ── Layout utility ────────────────────────────────── */
+@layer components {
+  .container-site {
+    @apply w-full mx-auto px-5 md:px-8 lg:px-12;
+    max-width: 1280px;
+  }
+
+  /* ── Buttons ───────────────────────────────────── */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 cursor-pointer
+           font-body font-semibold text-xs tracking-widest uppercase
+           rounded-md transition-all duration-300 no-underline select-none;
+    padding: 12px 28px;
+    white-space: nowrap;
+    border: none;
+    outline: none;
+  }
+
+  .btn-primary {
+    @apply bg-ember-500 text-white;
+  }
+  .btn-primary:hover {
+    @apply bg-ember-600;
+    box-shadow: 0 0 28px rgba(224,123,58,0.40);
+  }
+
+  .btn-outline {
+    @apply bg-transparent text-white;
+    border: 1.5px solid rgba(255, 255, 255, 0.22);
+  }
+  .btn-outline:hover {
+    border-color: rgba(255, 255, 255, 0.50);
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  /* ── Typography ────────────────────────────────── */
+  .heading-hero {
+    font-family: var(--font-display);
+    font-size: clamp(48px, 7vw, 88px);
+    font-weight: 600;
+    line-height: 1.04;
+    color: white;
+  }
+
+  .heading-section {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 4vw, 56px);
+    font-weight: 600;
+    line-height: 1.1;
+    color: white;
+  }
+
+  .heading-card {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  /* ── Badges ────────────────────────────────────── */
+  .badge {
+    @apply inline-flex items-center gap-1 font-body font-semibold
+           text-[0.6rem] tracking-wider uppercase rounded-full;
+    padding: 3px 10px;
+  }
+
+  .badge-chef {
+    background: rgba(224, 123, 58, 0.18);
+    color: #F59B6A;
+    border: 1px solid rgba(224, 123, 58, 0.30);
+  }
+
+  .badge-seller {
+    background: rgba(255,255,255,0.08);
+    color: #d0d0d0;
+    border: 1px solid rgba(255,255,255,0.14);
+  }
+
+  /* ── Glassmorphism ─────────────────────────────── */
+  .glass {
+    background: rgba(18, 18, 26, 0.75);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  /* ── Dishes horizontal track (GSAP target) ─────── */
+  .dishes-track {
+    display: flex;
+    gap: 24px;
+    width: max-content;
+  }
+
+  /* ── Testimonials marquee ───────────────────────── */
+  .testimonials-wrap {
+    display: flex;
+    gap: 20px;
+    width: max-content;
+    animation: marquee 48s linear infinite;
+  }
+
+  .testimonials-track:hover .testimonials-wrap {
+    animation-play-state: paused;
+  }
+}
+
+/* ── Keyframes ─────────────────────────────────────── */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50%       { transform: translateY(-14px) rotate(6deg); }
+}
+
+@keyframes float-delayed {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50%       { transform: translateY(-18px) rotate(-5deg); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.45; transform: scale(1); }
+  50%       { opacity: 0.75; transform: scale(1.05); }
+}
