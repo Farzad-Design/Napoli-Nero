@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 
@@ -72,19 +73,15 @@ export default function Navbar() {
           <div className="flex items-center justify-between h-[72px]">
 
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2.5 group shrink-0">
-              <div className="relative w-9 h-9 flex items-center justify-center">
-                <div className="absolute inset-0 rounded-full border border-ember-500/40 bg-ember-500/8 group-hover:bg-ember-500/16 transition-all duration-300" />
-                <span className="font-display font-bold text-ember-500 text-lg relative z-10 leading-none">N</span>
-              </div>
-              <div className="flex flex-col leading-none">
-                <span className="font-display font-bold text-white text-[1.05rem] tracking-[0.12em] uppercase">
-                  Napoli
-                </span>
-                <span className="font-display font-light text-ember-500 text-[0.72rem] tracking-[0.28em] uppercase -mt-0.5">
-                  Nero
-                </span>
-              </div>
+            <Link href="/" className="shrink-0 group">
+              <Image
+                src="/logo/Logo.svg"
+                alt="Napoli Nero"
+                width={120}
+                height={48}
+                className="h-10 w-auto transition-opacity duration-300 group-hover:opacity-80"
+                priority
+              />
             </Link>
 
             {/* Desktop nav */}

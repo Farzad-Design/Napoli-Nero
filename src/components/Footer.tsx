@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 
 const SOCIALS = [
@@ -27,14 +28,14 @@ export default function Footer() {
 
           {/* Brand column */}
           <div className="lg:col-span-1 flex flex-col gap-5">
-            <Link href="/" className="flex items-center gap-2.5 group w-fit">
-              <div className="w-9 h-9 flex items-center justify-center rounded-full border border-ember-500/40">
-                <span className="font-display font-bold text-ember-500 text-lg leading-none">N</span>
-              </div>
-              <div className="flex flex-col leading-none">
-                <span className="font-display font-bold text-white text-[1rem] tracking-[0.12em] uppercase">Napoli</span>
-                <span className="font-display font-light text-ember-500 text-[0.7rem] tracking-[0.28em] uppercase -mt-0.5">Nero</span>
-              </div>
+            <Link href="/" className="w-fit group">
+              <Image
+                src="/logo/Logo.svg"
+                alt="Napoli Nero"
+                width={120}
+                height={48}
+                className="h-10 w-auto transition-opacity duration-300 group-hover:opacity-80"
+              />
             </Link>
 
             <p className="text-[var(--text-secondary)] text-xs leading-relaxed">
