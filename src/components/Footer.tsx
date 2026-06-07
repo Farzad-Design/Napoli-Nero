@@ -30,7 +30,7 @@ export default function Footer() {
           <div className="lg:col-span-1 flex flex-col gap-5">
             <Link href="/" className="w-fit group">
               <Image
-                src="/logo/Logo.svg"
+                src="/Logo/Logo.svg"
                 alt="Napoli Nero"
                 width={120}
                 height={48}

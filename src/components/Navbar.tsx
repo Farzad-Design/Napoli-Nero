@@ -75,7 +75,7 @@ export default function Navbar() {
             {/* Logo */}
             <Link href="/" className="shrink-0 group">
               <Image
-                src="/logo/Logo.svg"
+                src="/Logo/Logo.svg"
                 alt="Napoli Nero"
                 width={120}
                 height={48}
