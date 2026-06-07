@@ -105,35 +105,22 @@ export default function Chef() {
 
           {/* Right: Image */}
           <div className="chef-image-wrap relative order-1 lg:order-2" ref={imageRef}>
-            <div className="absolute inset-0 rounded-3xl bg-ember-500/10 blur-[60px] scale-90 pointer-events-none" />
-
             <div
-              className="relative w-full aspect-[3/4] max-w-[480px] ml-auto rounded-2xl overflow-hidden"
-              style={{ boxShadow: '0 20px 80px rgba(0,0,0,0.6), 0 0 0 1px var(--border)' }}
+              className="relative w-full max-w-[480px] ml-auto rounded-2xl overflow-hidden"
+              style={{
+                boxShadow: '0 20px 80px rgba(0,0,0,0.6)',
+                border: '2px solid rgba(192,192,192,0.45)',
+              }}
             >
               <Image
                 src="/images/chef.png"
                 alt="Napoli Nero Head Chef"
-                fill sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover object-center"
+                width={480}
+                height={600}
+                className="w-full h-auto block"
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-noir-950/70 via-transparent to-transparent" />
-
-              <div className="absolute bottom-6 left-6 right-6">
-                <div className="glass rounded-xl p-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-ember-500/25 flex items-center justify-center text-lg">👨‍🍳</div>
-                    <div>
-                      <div className="text-white font-display font-semibold text-base">Chef Marco Esposito</div>
-                      <div className="text-[var(--text-muted)] text-[0.65rem] tracking-wide">Executive Chef · Naples, Italy</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
-
-            <div className="absolute -top-4 -right-4 w-24 h-24 border-t-2 border-r-2 border-ember-500/20 rounded-tr-3xl" />
-            <div className="absolute -bottom-4 -left-4 w-24 h-24 border-b-2 border-l-2 border-ember-500/20 rounded-bl-3xl" />
 
             <motion.div
               initial={{ opacity: 0, x: -20 }}
