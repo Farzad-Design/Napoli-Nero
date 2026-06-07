@@ -105,22 +105,12 @@ export default function Chef() {
 
           {/* Right: Image */}
           <div className="chef-image-wrap relative order-1 lg:order-2" ref={imageRef}>
-            <div
-              className="relative w-full max-w-[480px] ml-auto rounded-2xl overflow-hidden"
-              style={{
-                boxShadow: '0 20px 80px rgba(0,0,0,0.6)',
-                border: '2px solid rgba(192,192,192,0.45)',
-              }}
-            >
-              <Image
-                src="/images/chef.png"
-                alt="Napoli Nero Head Chef"
-                width={480}
-                height={600}
-                className="w-full h-auto block"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-            </div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/chef.png"
+              alt="Napoli Nero Head Chef"
+              className="w-full h-auto block"
+            />
 
             <motion.div
               initial={{ opacity: 0, x: -20 }}
