@@ -41,7 +41,6 @@ export default function Hero() {
       <video
         autoPlay muted loop playsInline
         className="absolute inset-0 w-full h-full object-cover z-0"
-        poster="/images/pizza1.jpg"
       >
         <source src="/videos/hero.mp4" type="video/mp4" />
       </video>
