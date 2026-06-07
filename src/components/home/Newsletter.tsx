@@ -36,24 +36,24 @@ export default function Newsletter() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-24 overflow-hidden"
-      style={{ background: 'linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%)' }}
+      className="relative overflow-hidden"
+      style={{ minHeight: '520px' }}
     >
-      {/* Background video loop */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <video
-          autoPlay muted loop playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-[0.08]"
-        >
-          <source src="/videos/creation.mp4" type="video/mp4" />
-        </video>
-        <div className="absolute inset-0 bg-gradient-to-b from-[var(--bg-secondary)] via-transparent to-[var(--bg-primary)]" />
+      {/* Sticky background image */}
+      <div
+        className="sticky top-0 w-full h-screen -mb-screen pointer-events-none"
+        style={{ zIndex: 0 }}
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/images/promo.png"
+          alt=""
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-noir-950/60" />
       </div>
 
-      {/* Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[300px] rounded-full bg-ember-500/[0.06] blur-[100px] pointer-events-none" />
-
-      <div className="container-site relative z-10">
+      <div className="container-site relative py-24" style={{ zIndex: 1 }}>
         <div className="newsletter-content max-w-2xl mx-auto text-center">
 
           {/* Eyebrow */}
