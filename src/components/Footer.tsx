@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { motion } from 'framer-motion';
 
 const SOCIALS = [
@@ -29,11 +28,10 @@ export default function Footer() {
           {/* Brand column */}
           <div className="lg:col-span-1 flex flex-col gap-5">
             <Link href="/" className="w-fit group">
-              <Image
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
                 src="/Logo/Logo.svg"
                 alt="Napoli Nero"
-                width={120}
-                height={48}
                 className="h-10 w-auto transition-opacity duration-300 group-hover:opacity-80"
               />
             </Link>

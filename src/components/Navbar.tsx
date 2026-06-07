@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
-import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 
@@ -74,13 +73,11 @@ export default function Navbar() {
 
             {/* Logo */}
             <Link href="/" className="shrink-0 group">
-              <Image
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
                 src="/Logo/Logo.svg"
                 alt="Napoli Nero"
-                width={120}
-                height={48}
                 className="h-10 w-auto transition-opacity duration-300 group-hover:opacity-80"
-                priority
               />
             </Link>
 
