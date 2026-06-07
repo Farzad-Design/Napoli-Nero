@@ -112,7 +112,7 @@ export default function Chef() {
               style={{ boxShadow: '0 20px 80px rgba(0,0,0,0.6), 0 0 0 1px var(--border)' }}
             >
               <Image
-                src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=800&q=80"
+                src="/images/chef.png"
                 alt="Napoli Nero Head Chef"
                 fill sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover object-center"
