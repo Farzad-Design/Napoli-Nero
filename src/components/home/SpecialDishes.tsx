@@ -17,7 +17,7 @@ function DishCard({ dish }: { dish: Dish }) {
     <motion.article
       whileHover={{ y: -8, scale: 1.01 }}
       transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className="group relative flex-shrink-0 w-[280px] md:w-[300px] rounded-2xl overflow-hidden cursor-pointer"
+      className="group relative flex-shrink-0 w-full md:w-[300px] rounded-2xl overflow-hidden cursor-pointer"
       style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', boxShadow: 'var(--shadow-card)' }}
     >
       {/* Image */}
