@@ -23,14 +23,31 @@ export default function ContactPage() {
     name: '', email: '', phone: '', date: '', time: '', guests: '2', occasion: '', notes: '',
   });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setLoading(true);
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: '24d02d1d-036a-4a55-b81e-99f623c5962e',
+          subject: 'New reservation request — Napoli Nero',
+          from_name: form.name,
+          ...form,
+        }),
+      });
+      const data = await res.json();
+      if (data.success) setSubmitted(true);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const inputClass = `w-full px-4 py-3.5 rounded-lg text-sm font-body text-white placeholder:text-[var(--text-muted)] outline-none focus:ring-1 focus:ring-ember-500/50 transition-all`;
@@ -146,11 +163,13 @@ export default function ContactPage() {
 
                   <motion.button
                     type="submit"
-                    whileHover={{ scale: 1.02, boxShadow: '0 0 32px rgba(224,123,58,0.40)' }}
+                    disabled={loading}
+                    whileHover={{ scale: loading ? 1 : 1.02, boxShadow: loading ? 'none' : '0 0 32px rgba(224,123,58,0.40)' }}
                     whileTap={{ scale: 0.98 }}
                     className="btn btn-primary w-full py-4 text-sm mt-2"
+                    style={{ opacity: loading ? 0.7 : 1 }}
                   >
-                    Confirm Reservation
+                    {loading ? 'Sending…' : 'Confirm Reservation'}
                   </motion.button>
 
                   <p className="text-[var(--text-muted)] text-[0.65rem] text-center tracking-wide">
