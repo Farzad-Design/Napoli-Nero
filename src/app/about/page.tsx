@@ -17,7 +17,7 @@ const TEAM = [
     name: 'Sofia Ricci',
     role: 'Head Sommelier',
     bio: 'WSET Level 4 qualified. Curates every wine pairing with Italian regional expertise.',
-    image: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&q=80',
+    image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80',
   },
   {
     name: 'Luca Ferrara',
