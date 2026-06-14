@@ -29,7 +29,7 @@ function ItemCard({ item }: { item: { name: string; description: string; price: 
   return (
     <motion.div
       whileHover={{ y: -4 }}
-      className="group relative rounded-2xl overflow-hidden border border-white/[0.07] bg-[var(--bg-card)] transition-all duration-300 hover:border-ember-500/25"
+      className="group relative h-full rounded-2xl overflow-hidden border border-white/[0.07] bg-[var(--bg-card)] transition-all duration-300 hover:border-ember-500/25 flex flex-col"
     >
       {item.image && (
         <div className="relative w-full aspect-[4/3] overflow-hidden">
@@ -46,7 +46,7 @@ function ItemCard({ item }: { item: { name: string; description: string; price: 
           )}
         </div>
       )}
-      <div className={`p-5 flex items-start justify-between gap-4 ${!item.image ? 'flex-row items-center' : ''}`}>
+      <div className={`p-5 flex items-start justify-between gap-4 flex-1 ${!item.image ? 'flex-row items-center' : ''}`}>
         <div className="flex-1 min-w-0">
           {item.icon && <span className="text-2xl mb-2 block">{item.icon}</span>}
           <h3 className="heading-card text-white mb-1">{item.name}</h3>
@@ -147,9 +147,9 @@ export default function MenuPage() {
               Aggiunte <span className="text-ember-500 italic">& Extras</span>
             </h2>
             <p className="text-[var(--text-secondary)] text-sm mb-8">Elevate your pizza with our premium additions.</p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch">
               {EXTRAS.map((item, i) => (
-                <motion.div key={item.name} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.06 }}>
+                <motion.div key={item.name} className="h-full" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.06 }}>
                   <ItemCard item={item} />
                 </motion.div>
               ))}
@@ -162,9 +162,9 @@ export default function MenuPage() {
               Bevande <span className="text-ember-500 italic">& Drinks</span>
             </h2>
             <p className="text-[var(--text-secondary)] text-sm mb-8">Curated beverages to complement your dining experience.</p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch">
               {DRINKS.map((item, i) => (
-                <motion.div key={item.name} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.06 }}>
+                <motion.div key={item.name} className="h-full" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.06 }}>
                   <ItemCard item={item} />
                 </motion.div>
               ))}

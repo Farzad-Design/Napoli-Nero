@@ -40,6 +40,8 @@ export default function Hero() {
       {/* ── Full-screen video background ───────────────────── */}
       <video
         autoPlay muted loop playsInline
+        preload="metadata"
+        poster="/images/hero-poster.jpg"
         className="absolute inset-0 w-full h-full object-cover z-0"
       >
         <source src="/videos/hero.mp4" type="video/mp4" />
